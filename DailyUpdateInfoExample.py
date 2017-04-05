@@ -7,17 +7,17 @@ Created on Wed Apr  5 13:01:48 2017
 """
 
 # get_weather
-owmKey = "OpenWeatherMapAPIKey"
-owmIDs = {"City" : CityID , "City" : CityID}
+owmKey = "OpenWeatherMap API key"
+owmIDs = {"City" : CityID}
 
 # get_stock_info
-tickerList = ["ticker"]
+tickerList = ["ticker symbol"]
 
 # get_news
-newsKey = "NewsAPIkey"
+newsKey = "NewsAPI Key"
 
 # get_todo_list
-username = "Reddit ssername"
+username = "Reddit username"
 password = "Reddit password"
 client_id = "App client_id"
 client_secret = "App client_secret"
