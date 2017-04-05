@@ -1,6 +1,6 @@
 # DailyUpdate
 
-DailyUpdate is a Python script that sends an e-mail to from and to your Gmail account with various information, including weather, stock prices, Google Calendar events, yesterday's top news stories, and Reddit comments (where I write my to-do list, optional). 
+DailyUpdate is a Python script that sends an e-mail from and to your Gmail account with various information, including weather, stock prices, Google Calendar events, yesterday's top news stories, and Reddit comments (where I write my to-do list, optional). 
 
 For weather, the OpenWeatherMap API was used. It can be found here: [https://openweathermap.org/api](https://openweathermap.org/api)
 
