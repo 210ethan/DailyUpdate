@@ -22,22 +22,22 @@ def bot_login():
 
 def get_todo_list(r):
     
+    todoFormatted = ""
+    
     currentDay = datetime.now()
     currentDayFormatted = currentDay.strftime("%B %d, %Y")
     monthName = currentDay.strftime("%B")
     dayName = currentDay.strftime("%A")
     
-    print("Here's your to-do list for",currentDayFormatted+ ".")
+    todoIntro = "\nHere is your to-do list for " + currentDayFormatted + ".\n\n"
+    todoFormatted = todoFormatted + todoIntro
     
     for submission in r.subreddit("getdisciplined").new():
         if monthName in submission.title and dayName in submission.title:
             for comment in submission.comments:
-                if "Social/Other:" in comment.body and comment.author == "Awarenesss":
+                if "Daily:" in comment.body and comment.author == "Awarenesss":
                     comment.body.replace("[ ]","")
-                    print(comment.body)
-                    return None
-            
-r = bot_login()
-get_todo_list(r)
+                    todoFormatted = todoFormatted + comment.body
+                    break
     
-    
+    return todoFormatted

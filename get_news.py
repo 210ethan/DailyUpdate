@@ -11,8 +11,9 @@ import DailyUpdateInfo
 
 def get_news(source,sortBy,numArticles):
     
+    # create the url to get news from
     requestURL = "https://newsapi.org/v1/articles?source=" + str(source) + "&" 
-    requestURL = requestURL + str(sortBy) + "=top&apiKey=" + DailyUpdateInfo.newsKey
+    requestURL = requestURL + str(sortBy) + "=top&apiKey=" + DailyUpdateInfo.news_key
                                                                 
     newsArticles = requests.get(requestURL)
     newsArticles = newsArticles.json()
@@ -22,32 +23,36 @@ def get_news(source,sortBy,numArticles):
     for article in range(0,numArticles):
         articlesWanted.append(newsArticles["articles"][article])
         
+    # clean up name of source
     sourceFixed = source.replace("-"," ")
     sourceFixed = sourceFixed.title()
-    print("Here are today's",sortBy,"stories from",sourceFixed, + ".\n")
+    newsIntro = "\nHere are the " + sortBy + " stories of the day from " + sourceFixed + ".\n"
     
-    print_articles(articlesWanted)
-    
-    
+    newsFormatted = newsIntro + print_articles(articlesWanted)
+    return newsFormatted
         
 def print_articles(articlesWanted):
     
+    articlesFormatted = ""
+    
     for article in articlesWanted:
         
-        print(article["title"])
+        title = article["title"]
         
         if article["author"] == "None":
-            print("No author.")
+            author = "No author.\n"
         else:
-            print("Author:",article["author"])
+            author = "Author: " + article["author"] + "\n"
        
         if article["description"] == "None":
-            print("No description.")
+            description = "No description.\n"
         else:
-            print(article["description"])
+            description = article["description"] + "\n"
         
-        print("URL:",article["url"])
-        print()
+        url = "URL: " + article["url"] + "\n"
+        separator = "_"*50 + "\n"
         
-                                                                    
-                                                            
+        articlesFormatted = articlesFormatted + title + author + description + url + separator
+    
+    return articlesFormatted
+                                                         

@@ -10,19 +10,20 @@ import requests
 import DailyUpdateInfo
 from datetime import datetime
 
-
 def get_weather(cityName):
     
     # create and request the API request URL based on city ID
-    requestURL = "http://api.openweathermap.org/data/2.5/weather?id=" + str(DailyUpdateInfo.owmIDs[cityName]) + "&APPID=" + DailyUpdateInfo.owmKey
+    requestURL = "http://api.openweathermap.org/data/2.5/weather?id=" + DailyUpdateInfo.owm_IDs[cityName] + "&APPID=" + DailyUpdateInfo.owm_key
     weatherInfo = requests.get(requestURL)
     weatherInfo = weatherInfo.json()
     
     name = weatherInfo["name"]
     minTemp = weatherInfo["main"]["temp_min"] * (9/5) - 459.67 # convert to °F
     maxTemp = weatherInfo["main"]["temp_max"] * (9/5) - 459.67 
+    
+    # Sunrise/set is time at which they happens sunrise, sunset is converted 
+    # from Epoch time (seconds) to CST
 
-    # sunrise, sunset is converted from Epoch time (seconds) to CST
     sunrise = datetime.fromtimestamp(
             int(weatherInfo["sys"]["sunrise"])).strftime(
                     "%H:%M:%S")
@@ -31,21 +32,21 @@ def get_weather(cityName):
                     "%H:%M:%S")
     
     windSpeed = weatherInfo["wind"]["speed"]
-    
     # convert wind direction from degrees to cardinal directions
     windDirectionDeg = weatherInfo["wind"]["deg"]
     
     windDirectionCard = cardinal_direction(windDirectionDeg)
+
+    weatherIntro = "Here is what the weather looks like in " + name + "!\n"
+    temp = "Minimum temperature: " + str(round(minTemp)) + " F\nMaximum temperature: " + str(round(maxTemp)) + " F\n"
+    sun = "The sun will rise at " + sunrise + " and set at " + sunset + ".\n"
+    wind = "Wind will be blowing at " + str(windSpeed) + " mph to the " + windDirectionCard + ".\n" 
+    moreInfo = "For more info, visit https://openweathermap.org/\n"
+    separator = "_"*50 + "\n"
     
-    print("Here's what the weather looks like in",name+"!\n")
-    print("Minimum temperature:",str(round(minTemp))+"°F\nMaximum temperature:",
-          str(round(maxTemp))+"°F\n")
-    print("The sun will rise at",sunrise,"and set at",sunset+".\n")
-    print("Wind will be blowing at",windSpeed,"mph to the",
-          windDirectionCard + ".\n")
-    
-    print("For more info, visit https://openweathermap.org/")
-    
+    weatherFormatted = weatherIntro + temp + sun + wind + moreInfo + separator
+    return weatherFormatted
+
 def cardinal_direction(degree):
     
     cardinal = ["NE","North","NW","West","SW","South","SE","East"]
