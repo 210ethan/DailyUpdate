@@ -12,37 +12,37 @@ import DailyUpdateInfo
 def get_news(source,sortBy,numArticles):
     
     # create the url to get news from
-    requestURL = "https://newsapi.org/v1/articles?source=" + str(source) + "&" 
-    requestURL = requestURL + str(sortBy) + "=top&apiKey=" + DailyUpdateInfo.news_key
+    request_url = "https://newsapi.org/v1/articles?source=" + str(source) + "&" 
+    request_url = request_url + str(sortBy) + "=top&apiKey=" + DailyUpdateInfo.news_key
                                                                 
-    newsArticles = requests.get(requestURL)
-    newsArticles = newsArticles.json()
+    news_articles = requests.get(request_url)
+    news_articles = news_articles.json()
 
-    articlesWanted = []
+    articles_wanted = []
     
     for article in range(0,numArticles):
-        articlesWanted.append(newsArticles["articles"][article])
+        articles_wanted.append(news_articles["articles"][article])
         
     # clean up name of source
-    sourceFixed = source.replace("-"," ")
-    sourceFixed = sourceFixed.title()
-    newsIntro = "\nHere are the " + sortBy + " stories of the day from " + sourceFixed + ".\n"
+    source_fixed = source.replace("-"," ")
+    source_fixed = source_fixed.title()
+    news_intro = "\nHere are the " + sortBy + " stories of the day from " + source_fixed + ".\n"
     
-    newsFormatted = newsIntro + print_articles(articlesWanted)
-    return newsFormatted
+    news_formatted = news_intro + print_articles(articles_wanted)
+    return news_formatted
         
-def print_articles(articlesWanted):
+def print_articles(articles_wanted):
     
-    articlesFormatted = ""
+    articles_formatted = ""
     
-    for article in articlesWanted:
+    for article in articles_wanted:
         
         title = article["title"]
         
         if article["author"] == "None":
             author = "No author.\n"
         else:
-            author = "Author: " + article["author"] + "\n"
+            author = "Author: " + str(article["author"]) + "\n"
        
         if article["description"] == "None":
             description = "No description.\n"
@@ -52,7 +52,7 @@ def print_articles(articlesWanted):
         url = "URL: " + article["url"] + "\n"
         separator = "_"*50 + "\n"
         
-        articlesFormatted = articlesFormatted + title + author + description + url + separator
+        articles_formatted = articles_formatted + title + author + description + url + separator
     
-    return articlesFormatted
+    return articles_formatted
                                                          

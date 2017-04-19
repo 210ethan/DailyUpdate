@@ -11,20 +11,20 @@ import DailyUpdateInfo
 
 def get_stock_info(ticker_list,numShares):
     
-    stockFormatted = ""
+    stocks_formatted = ""
     
-    stockIntro = "Here is the list of desired stock prices.\n"
-    stockFormatted = stockFormatted + stockIntro
+    stocks_intro = "Here is the list of desired stock prices.\n"
+    stocks_formatted = stocks_formatted + stocks_intro
     
     for ticker in ticker_list:
         stock = Stock(ticker)
-        stockInfo = stock.get_latest_price()[0]["LastTradePriceOnly"]
-        stockFormatted = stockFormatted + ticker + ": $" + stockInfo + "\n"
+        stock_info = stock.get_latest_price()[0]["LastTradePriceOnly"]
+        stocks_formatted = stocks_formatted + ticker + ": $" + stock_info + "\n"
     
     stock = Stock("VFINX")
-    valueOfShares = float(stock.get_latest_price()[0]["LastTradePriceOnly"])*numShares
-    value = "Your Vanguard account is worth $" + str(valueOfShares) + ".\n"
+    value_of_shares = float(stock.get_latest_price()[0]["LastTradePriceOnly"])*numShares
+    value = "Your Vanguard account is worth $" + str(value_of_shares) + ".\n"
     separator = "_"*50 + "\n"
     
-    stockFormatted = stockFormatted + value + separator
-    return stockFormatted
+    stocks_formatted = stocks_formatted + value + separator
+    return stocks_formatted
