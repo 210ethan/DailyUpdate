@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Apr  5 13:01:48 2017
+Created on Tue Apr 18 20:07:50 2017
 
 @author: EthanMorse
 """
@@ -11,7 +11,7 @@ owmKey = "OpenWeatherMap API key"
 owmIDs = {"City" : CityID}
 
 # get_stock_info
-tickerList = ["ticker symbol"]
+tickerList = ["ticker","ticker"]
 
 # get_news
 newsKey = "NewsAPI Key"
@@ -21,3 +21,8 @@ username = "Reddit username"
 password = "Reddit password"
 client_id = "App client_id"
 client_secret = "App client_secret"
+
+# send_email
+gmail_sender = "account sending e-mail"
+gmail_receiever = "account receiving e-mail"
+gmail_password = "sender e-mail's password"
