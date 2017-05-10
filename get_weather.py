@@ -21,7 +21,7 @@ def get_weather(cityName):
     min_temp = weather_info["main"]["temp_min"] * (9/5) - 459.67 # convert to °F
     max_temp = weather_info["main"]["temp_max"] * (9/5) - 459.67 
     
-    # Sunrise/set is time at which they happens sunrise, sunset is converted 
+    # Sunrise/set is time at which they happen sunrise, sunset is converted 
     # from Epoch time (seconds) to CST
 
     sunrise = datetime.fromtimestamp(
