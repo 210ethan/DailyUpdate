@@ -10,5 +10,5 @@ For top news stories, the News API was used. It can be found here: [https://news
 
 For Reddit comments, the PRAW was used. It can be found here: [https://praw.readthedocs.io/en/latest/](https://praw.readthedocs.io/en/latest/)
 
-For sending the e-mail, I used smtplib. It can be found here: [https://docs.python.org/3/library/smtplib.html](https://docs.python.org/3/library/smtplib.html).
+For sending the e-mail, smtplib was used. It can be found here: [https://docs.python.org/3/library/smtplib.html](https://docs.python.org/3/library/smtplib.html).
 
