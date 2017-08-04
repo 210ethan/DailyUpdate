@@ -15,10 +15,7 @@ def create_email_body(cityName,source,sortBy,numArticles,tickerList,numShares):
 
     # replace invalid UNICODE codes with valid codes
     return email_body.replace(u"\u2018", "'").replace(u"\u2019", "'").replace(u"\u201c","'").replace(u"\201d","'").replace(u'\xa0', u' ')
-       
-    
-# send_email("College Station","google-news","top",3,["VFINX","GOOG"],27.998)  
-    
+
 def send_email(cityName,source,sortBy,numArticles,tickerList,numShares):
 
     content = create_email_body(cityName,source,sortBy,numArticles,tickerList,numShares)
