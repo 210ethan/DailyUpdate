@@ -16,7 +16,7 @@ def bot_login():
             password = DailyUpdateInfo.password,
             client_id = DailyUpdateInfo.client_id,
             client_secret = DailyUpdateInfo.client_secret,
-            user_agent = "/u/Awarenesss' DailyUpdate")
+            user_agent = "/u/<username>' DailyUpdate")
     
     return r
 
@@ -35,7 +35,7 @@ def get_todo_list(r):
     for submission in r.subreddit("getdisciplined").new():
         if month_name in submission.title and day_name in submission.title:
             for comment in submission.comments:
-                if "Daily:" in comment.body and comment.author == "Awarenesss":
+                if "Daily:" in comment.body and comment.author == "<username>":
                     comment.body.replace("[ ]","")
                     todo_formatted = todo_formatted + comment.body
                     break
