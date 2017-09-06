@@ -14,7 +14,7 @@ def create_email_body(cityName,source,sortBy,numArticles,tickerList,numShares):
     email_body = get_weather(cityName) + get_news(source,sortBy,numArticles) + get_stock_info(tickerList,numShares) + get_todo_list(bot_login())
 
     # replace invalid UNICODE codes with valid codes
-    return email_body.replace(u"\u2018", "'").replace(u"\u2019", "'").replace(u"\u201c","'").replace(u"\201d","'").replace(u'\xa0', u' ')
+    return email_body.encode("utf-8")
 
 def send_email(cityName,source,sortBy,numArticles,tickerList,numShares):
 
